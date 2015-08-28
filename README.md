@@ -1,6 +1,7 @@
 # SPLR-FEVER
 This repository contains the Feature EvolutioN ExtractoR, part of our work on Software Product Line Research.
 
+_We are currently working on getting all the information in here, this is a work in progress right now_
 
 In this repository you can find 
 - the code of the FEVER tool, use to extract information from Git commits in a feature-oriented way
