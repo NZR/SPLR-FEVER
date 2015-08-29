@@ -4,10 +4,10 @@ This repository contains the Feature EvolutioN ExtractoR, part of our work on So
 _We are currently working on getting all the information in here, this is a work in progress right now_
 
 In this repository you can find 
-- the code of the FEVER tool, use to extract information from Git commits in a feature-oriented way
-- spreadsheets containing the results of the evaluation of the tool
-- spreadsheets regarding the identification of co-evolution patterns
-- general documentation about what the tool does, where it comes from, what's this all about
+- the code of the FEVER tool, use to extract information from Git commits in a feature-oriented way in the fever/ folder
+- spreadsheets containing the data and results of the evaluation of the tool, the identification of co-evolution patterns, and the discovery of new patterns
+	in the analysis/ folder
+
 
 Word of caution: 
 
