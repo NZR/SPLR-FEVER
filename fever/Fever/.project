@@ -19,7 +19,7 @@
 		<link>
 			<name>model.src</name>
 			<type>2</type>
-			<location>/Users/Dante/Documents/workspace/eclipse_workspaces/fevers/fever.models/src</location>
+			<locationURI>$%7BPARENT-1-PROJECT_LOC%7D/fever.models/src</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
