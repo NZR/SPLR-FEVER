@@ -5,6 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Fever"/>
 	<classpathentry kind="lib" path="../libs/slf4j-api-1.7.10.jar"/>
+	<classpathentry kind="lib" path="../libs/org.eclipse.egit.ui_3.4.2.201412180340-r.jar"/>
 	<classpathentry kind="lib" path="../libs/org.eclipse.jgit-3.7.0.201502260915-r.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
