@@ -15,12 +15,8 @@ The tool itself relies on quite a few other academical tools, such as "dumpconf"
 As of today, the "code" is not integrated, but the tools are called one after the other 
 through command line, invoked through Java code. This makes the implementation extremely sensible to the environment in which it is run.
 
-You will need to install those tools first, make sure they run, and then update the paths in the FEVER project. 
-You can find KconfigReader - a tool developed by Christian Kaestner here https://github.com/ckaestne/kconfigreader
-CPPSTATS developped by the University of Passau by Sven Apel research's group can be found here: http://www.infosun.fim.uni-passau.de/cl/staff/liebig/cppstats/
-
-You should then be able to import the content of the "fever" folder as existing project in Eclipse and then work your way from here. 
-
-To be honest, this is not going to be fun, and we are aware of that. 
+To be honest, the setup process is not fun, and we are aware of that. 
 We will be working on improving this in the next few weeks.
 If you are just interested in using the tool, we will produce a virtual machine with everything setup properly very soon - that will make your life much easier. 
+
+In the mean time, check the Setup.md file in the root directory of this project for setup instruction. 
