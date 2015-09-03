@@ -75,12 +75,61 @@ run "sh make.sh"
     this will avoid compilation errors, about a missing header file
     this is not necessary for Linux (Ubuntu)
 
+If that worked for the best, you now need to modify the source code in "dumpconf.c"
+
+What to change: 
+  comment out line 253 ( fprintf(stdout, "\n.\n"); )
+Why change it ? 
+  because dumpconf will then produce an xml file. That specific lines adds a "." at the top of the file
+probably used by other tools in the Linux Kconfig toolchain. But as a results
+the file created by Dumpconf is not "xml" compliant by default and the XML parser will crash. 
+
+_If you forgot to do this, this is what will happen:
+ 
+[Fatal Error] old_fm<some big number>.fm:2:1: Content is not allowed in prolog. _
+
+And recompile ;)
+
+This is important: you are building the Kconfig parser we will use
+with the modified code, against a given Linux repo. 
+As the Kconfig language evolved, you *may*  need to recompile the parser against the newer/older version of the parser. 
+Checkout the appropriate revision of the Linux kernel in your linux git repo, run "make menuconfig" to update the object files required
+and _only then_ re-compile dumpconf.
+
+I ran into a weird boost related issue in srcML compilation process. 
+There was an error related to the boost macro TIME_UTC_ as "not declared in this scope". 
+This is caused by outdated boost libraries. 
+You might have to re-download and re-install boost so you can install it with the right parameters for srcML
+
+Yes... getting srcML to work is where the challenge is.
+Note that CPPSTATS will call srcML through command line argument. 
+If you run FEVER with a broken srcML, it will just tell you that FEVER was unable to get info out of the commit. 
+A couple of lines can be uncommented to help out to spot this issue in the FEVER source code.
+ 
 -----
 
-get python-lxml (using your favorite package manager on Linux. On MacOS, a more manual approach is possible
-see http://codespeak.net/lxml/
+
 
 git clonehttps://github.com/clhunsen/cppstats.git
 
 
+get python-lxml (using your favorite package manager on Linux. On MacOS, a more manual approach is possible
+see http://codespeak.net/lxml/
 
+You might need to get srcML as well - depending on your system (very likely). 
+The versions provided in the git hub repositories didn't work for me (Linux/MacOS). 
+You can get the source from http://www.srcml.org/downloads.html, and then recompile them using CMake (which might ask for an update).
+
+Ok, to get srcML working right, you might need to install a few libs (at a devel-level because). 
+You also might have to update your CMake (minimal version 3.8.12 - ubuntu apt is stuck at .7 at the moment... )
+Once you have that, make sure you get all the packages required presented in BUILD.md, and there's a bunch of them. 
+This is really the awful part of the installation... 
+(Stupid thing: once you ran Cmake, run make...)
+
+-----
+
+In the Eclipse project, in the settings.properties file, you can now update the path to: 
+1. undertaker.dumpconf : link to the dumpconf executable (that you have compiled)
+2. cpp_stats.exe : link to the cppstats script in the CPPSTATS repo we cloned.
+
+To be honest, the undertaker.* , and python paths are not useful anymore (save the dumpconf - mandatory!). Clean-up in progress!
