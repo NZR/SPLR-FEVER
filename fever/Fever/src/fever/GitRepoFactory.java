@@ -16,8 +16,7 @@ public class GitRepoFactory {
 			String repoPath = r.getProperty("repo.path");
 			
 			FileRepositoryBuilder builder = new FileRepositoryBuilder();
-			_instance = builder.setWorkTree(new File(repoPath)).readEnvironment() // scan environment GIT_* variables
-					.findGitDir() // scan up the file system tree
+			_instance = builder.setGitDir(new File(repoPath+"/.git"))
 					.build();
 		}
 		
