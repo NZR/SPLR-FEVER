@@ -9,14 +9,15 @@ In this repository you can find
 	in the analysis/ folder
 
 
-Word of caution: 
+Installing FEVER: 
 
-The tool itself relies on quite a few other academical tools, such as "dumpconf" (part of the KconfigReader project), and CPPSTATS.
+The tool itself relies on quite a few other  tools, such as "dumpconf" (part of the KconfigReader project), and CPPSTATS.
 As of today, the "code" is not integrated, but the tools are called one after the other 
 through command line, invoked through Java code. This makes the implementation extremely sensible to the environment in which it is run.
 
-To be honest, the setup process is not fun, and we are aware of that. 
-We will be working on improving this in the next few weeks.
-If you are just interested in using the tool, we will produce a virtual machine with everything setup properly very soon - that will make your life much easier. 
+Some instructions about those tools (where to find them) are available in Setup.md, along with instructions on how to get FEVER running.
 
-In the mean time, check the Setup.md file in the root directory of this project for setup instruction. 
+
+
+
+
