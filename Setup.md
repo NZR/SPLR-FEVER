@@ -2,6 +2,10 @@
 
 This document should help you get started with FEVER, get the right info and (hopefuly) get it to run. 
 
+See the pre-requisites at the end of this file.
+
+----
+
 1. Clone this repository to your local machine
 2. In Eclipse, use the import function to import the "fever" folder as an Eclipse project
 
@@ -38,14 +42,11 @@ In the "settings.properties" file of the /fever/ folder, you need to give the pa
 3. "*cpp_stats.exe*" should point to the executable of CPPSTATS (don't worry about the .exe of the setting, this does not have to be the "exe" file, this project works on MacOS )
 
 ---
-_**Make sure you have CPPSTATS and dumpconf setup and running. More info on this later on**_
+
+FINALLY: 
 
 Dirty trick : the last step is here to make sure that cppstats and dumpconf have access to all their pre-reqs when invoked from the Java process. I'll improve on that later. 
 Then, echo your "PATH" - in Linux and MacOS
-
-----
-
-FINALLY: 
 
 In "settings.properties": copy paste your complete path to the "path" variable in the property file. (ewwwww! yes. i know.)
 
@@ -62,6 +63,45 @@ run "make menuconfig" / "make xconfig"
   this compiles the Linux Kconfig parser (zconf.tab.o for instance, required for dumpconf later on). 
 
 ----- 
+
+## Get started
+
+Once you installed the prereqs below (do that first please), 
+you can start to dump info about feature changes. 
+For the moment, there is no user interface so all the interactions should be done through the source code (Main.java). 
+
+The program contains a string that you can replace with any commit id you wish. 
+The output (in terms of touched change attribute) will be displayed in the console. 
+
+
+
+ 
+--------
+##Pre-requisites
+
+CPPSTATS: 
+
+git clonehttps://github.com/clhunsen/cppstats.git
+
+get python-lxml (using your favorite package manager on Linux. On MacOS, a more manual approach is possible
+see http://codespeak.net/lxml/
+
+You might need to get srcML as well - depending on your system (very likely). 
+The versions provided in the git hub repositories didn't work for me (Linux/MacOS). 
+You can get the source from http://www.srcml.org/downloads.html, and then recompile them using CMake (which might ask for an update).
+
+Ok, to get srcML working right, you might need to install a few libs (at a devel-level because). 
+You also might have to update your CMake (minimal version 3.8.12 - ubuntu apt is stuck at .7 at the moment... )
+Once you have that, make sure you get all the packages required presented in BUILD.md, and there's a bunch of them. 
+
+If the installation of SRCML didn't work, you will only notice it when running FEVER. 
+CPPSTATS will try to invoke src2srcml, or srcml2src and won't find it. This will result
+in a runtime error.  Be careful. 
+
+
+-----
+
+DUMPCONF:
 
 git clone  https://github.com/ckaestne/kconfigreader.git
 
@@ -95,41 +135,3 @@ with the modified code, against a given Linux repo.
 As the Kconfig language evolved, you *may*  need to recompile the parser against the newer/older version of the parser. 
 Checkout the appropriate revision of the Linux kernel in your linux git repo, run "make menuconfig" to update the object files required
 and _only then_ re-compile dumpconf.
-
-I ran into a weird boost related issue in srcML compilation process. 
-There was an error related to the boost macro TIME_UTC_ as "not declared in this scope". 
-This is caused by outdated boost libraries. 
-You might have to re-download and re-install boost so you can install it with the right parameters for srcML
-
-Yes... getting srcML to work is where the challenge is.
-Note that CPPSTATS will call srcML through command line argument. 
-If you run FEVER with a broken srcML, it will just tell you that FEVER was unable to get info out of the commit. 
-A couple of lines can be uncommented to help out to spot this issue in the FEVER source code.
- 
------
-
-
-
-git clonehttps://github.com/clhunsen/cppstats.git
-
-
-get python-lxml (using your favorite package manager on Linux. On MacOS, a more manual approach is possible
-see http://codespeak.net/lxml/
-
-You might need to get srcML as well - depending on your system (very likely). 
-The versions provided in the git hub repositories didn't work for me (Linux/MacOS). 
-You can get the source from http://www.srcml.org/downloads.html, and then recompile them using CMake (which might ask for an update).
-
-Ok, to get srcML working right, you might need to install a few libs (at a devel-level because). 
-You also might have to update your CMake (minimal version 3.8.12 - ubuntu apt is stuck at .7 at the moment... )
-Once you have that, make sure you get all the packages required presented in BUILD.md, and there's a bunch of them. 
-This is really the awful part of the installation... 
-(Stupid thing: once you ran Cmake, run make...)
-
------
-
-In the Eclipse project, in the settings.properties file, you can now update the path to: 
-1. undertaker.dumpconf : link to the dumpconf executable (that you have compiled)
-2. cpp_stats.exe : link to the cppstats script in the CPPSTATS repo we cloned.
-
-To be honest, the undertaker.* , and python paths are not useful anymore (save the dumpconf - mandatory!). Clean-up in progress!
